@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>吉田先生のお言葉 - プレミアム会員登録</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #4169E1 0%, #9370DB 100%);
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    header {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #6e8efb;
+    }
+    
+    .nav-links {
+      display: flex;
+    }
+    
+    .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #333;
+    }
+    
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      color: #6e8efb;
+      margin-bottom: 2rem;
+    }
+    
+    .plan-comparison {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .plan {
+      flex: 1;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .free-plan {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+    }
+    
+    .premium-plan {
+      background-color: #f0f4ff;
+      border: 2px solid #6e8efb;
+      position: relative;
+      transform: scale(1.05);
+    }
+    
+    .plan-badge {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      background-color: #ff6b6b;
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+    
+    .plan-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    
+    .plan-price {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .premium-price {
+      color: #6e8efb;
+    }
+    
+    .plan-features {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 2rem;
+    }
+    
+    .plan-features li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+    
+    .plan-features li::before {
+      content: "✓";
+      margin-right: 0.5rem;
+      color: #28a745;
+      font-weight: bold;
+    }
+    
+    .plan-features .negative::before {
+      content: "✕";
+      color: #dc3545;
+    }
+    
+    .cta-button {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background-color: #6e8efb;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    
+    .cta-button:hover {
+      background-color: #5a73d8;
+    }
+    
+    .inactive-button {
+      background-color: #adb5bd;
+      cursor: default;
+    }
+    
+    .inactive-button:hover {
+      background-color: #adb5bd;
+    }
+    
+    .registration-form {
+      margin-top: 3rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    
+    .form-footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+    
+    .benefits {
+      margin: 3rem 0;
+      text-align: center;
+    }
+    
+    .benefits h2 {
+      color: #6e8efb;
+      margin-bottom: 1.5rem;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+    
+    .benefit-item {
+      padding: 1.5rem;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .benefit-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #6e8efb;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">吉田先生のお言葉</div>
+      <div class="nav-links">
+        <a href="#">ホーム</a>
+        <a href="#">吉田先生について</a>
+        <a href="#">お知らせ</a>
+        <a href="#">お問い合わせ</a>
+      </div>
+    </nav>
+  </header>
+  
+  <main>
+    <h1>プレミアム会員登録</h1>
+    
+    <div class="plan-comparison">
+      <div class="plan free-plan">
+        <div class="plan-title">無料会員</div>
+        <div class="plan-price">¥0</div>
+        <ul class="plan-features">
+          <li>制限された閲覧数</li>
+          <li>1日20分までのアクセス</li>
+          <li class="negative">広告あり</li>
+          <li class="negative">オンラインセミナーへの参加（別途料金）</li>
+        </ul>
+        <a href="#" class="cta-button inactive-button">現在のプラン</a>
+      </div>
+      
+      <div class="plan premium-plan">
+        <div class="plan-badge">おすすめ</div>
+        <div class="plan-title">プレミアム会員</div>
+        <div class="plan-price premium-price">¥500<span style="font-size: 1rem;">/月</span></div>
+        <ul class="plan-features">
+          <li>無制限の閲覧</li>
+          <li>無制限のアクセス</li>
+          <li>広告なし</li>
+          <li>月に1回のオンラインセミナーへの参加<br>（通常1講座¥10,000）</li>
+        </ul>
+        <a href="#registration-form" class="cta-button">今すぐ登録する</a>
+      </div>
+    </div>
+    
+    <div class="benefits">
+      <h2>プレミアム会員の特典</h2>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="benefit-icon">📚</div>
+          <h3>豊富なコンテンツ</h3>
+          <p>吉田先生のすべての講義やコンテンツに無制限でアクセスできます。過去のアーカイブもすべて閲覧可能です。</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🎓</div>
+          <h3>プレミアムセミナー</h3>
+          <p>月に1回開催される特別オンラインセミナーに無料で参加できます。通常は1講座¥10,000の価値があります。</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🚫</div>
+          <h3>広告なし</h3>
+          <p>集中して学習できるよう、サイト内のすべての広告が非表示になります。</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">⏱️</div>
+          <h3>時間制限なし</h3>
+          <p>1日20分の制限なく、いつでも好きなだけ学習できます。</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="registration-form" id="registration-form">
+      <h2>プレミアム会員登録フォーム</h2>
+      <form>
+        <div class="form-group">
+          <label for="name">お名前</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">メールアドレス</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">パスワード</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password-confirm">パスワード（確認）</label>
+          <input type="password" id="password-confirm" name="password-confirm" required>
+        </div>
+        
+        <button type="submit" class="cta-button">プレミアム会員に登録する（月額¥500）</button>
+      </form>
+      
+      <div class="form-footer">
+        <p>登録することで、<a href="#">利用規約</a>および<a href="#">プライバシーポリシー</a>に同意したことになります。</p>
+        <p>いつでもキャンセル可能です。お支払いは安全な決済システムで処理されます。</p>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 吉田先生のお言葉. All rights reserved.</p>
+  </footer>
+</body>
+</html>
