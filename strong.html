@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自分の強みは？ - 2年生の今こそ見つけよう</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        
+        :root {
+            --primary-1: #4263EB;
+            --primary-2: #5C7CFA;
+            --primary-3: #748FFC;
+            --primary-4: #91A7FF;
+            --primary-5: #BAC8FF;
+            --accent-1: #F03E3E;
+            --accent-2: #FF6B6B;
+            --accent-3: #FA5252;
+            --accent-4: #FFC9C9;
+            --yellow: #FCC419;
+            --text-main: #333333;
+            --text-heading: #1A1A1A;
+            --text-subtitle: #555555;
+            --bg-light: #F8F9FA;
+        }
+        
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            padding: 25px 35px;
+            background: linear-gradient(135deg, rgba(66, 99, 235, 0.1), rgba(186, 200, 255, 0.3));
+            border-bottom: 3px dashed var(--primary-2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            background-color: rgba(252, 196, 25, 0.2);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(to right, var(--primary-1), var(--primary-3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .subtitle {
+            font-family: 'Yomogi', cursive;
+            font-size: 18px;
+            color: var(--text-subtitle);
+            margin: 10px 0 0;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .grade-badge {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            font-family: 'Kaisei Decol', serif;
+            color: white;
+            font-size: 18px;
+            background-color: var(--accent-2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transform: rotate(3deg);
+            z-index: 1;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 25px;
+            position: relative;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid;
+        }
+        
+        .card-1 {
+            border-color: var(--primary-1);
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+        }
+        
+        .card-2 {
+            border-color: var(--primary-3);
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+        }
+        
+        .card-3 {
+            border-color: var(--accent-2);
+            grid-column: 1 / 3;
+            grid-row: 2 / 3;
+        }
+        
+        .card-header {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 20px;
+            color: var(--text-heading);
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .card-header::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: repeating-linear-gradient(to right, var(--primary-3), var(--primary-3) 5px, transparent 5px, transparent 10px);
+        }
+        
+        .highlight {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+        
+        .highlight::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(252, 196, 25, 0.3);
+            z-index: -1;
+            transform: rotate(-1deg);
+        }
+        
+        .key-concept {
+            display: inline-block;
+            font-family: 'Kaisei Decol', serif;
+            padding: 3px 10px;
+            background-color: var(--primary-2);
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 2px 5px;
+            transform: rotate(-1deg);
+        }
+        
+        .concept-box {
+            border: 2px dashed var(--primary-3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: rgba(116, 143, 252, 0.1);
+        }
+        
+        .concept-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: var(--primary-1);
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .concept-title::before {
+            content: "✦";
+            margin-right: 8px;
+            color: var(--accent-2);
+        }
+        
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(66, 99, 235, 0.2);
+            border-radius: 50%;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .quote {
+            font-family: 'Yomogi', cursive;
+            font-size: 18px;
+            line-height: 1.6;
+            padding: 15px;
+            background-color: rgba(252, 196, 25, 0.1);
+            border-left: 3px solid var(--yellow);
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .quote::before, .quote::after {
+            font-family: serif;
+            font-size: 40px;
+            position: absolute;
+            color: rgba(252, 196, 25, 0.5);
+            line-height: 1;
+        }
+        
+        .quote::before {
+            content: """;
+            top: 0;
+            left: 5px;
+        }
+        
+        .quote::after {
+            content: """;
+            bottom: -10px;
+            right: 5px;
+        }
+        
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .timeline::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--primary-3);
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+        
+        .timeline-point {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border: 2px solid var(--primary-3);
+            border-radius: 50%;
+            z-index: 1;
+            position: relative;
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            padding: 5px;
+            text-align: center;
+        }
+        
+        .timeline-point.active {
+            background-color: var(--primary-5);
+            border-color: var(--primary-1);
+            color: var(--primary-1);
+            font-weight: bold;
+        }
+        
+        .timeline-label {
+            font-size: 12px;
+            color: var(--text-subtitle);
+            margin-top: 5px;
+        }
+        
+        .arrow {
+            font-family: serif;
+            font-size: 24px;
+            color: var(--accent-2);
+            transform: rotate(-20deg);
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        .strengths-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .strength-item {
+            background-color: white;
+            border: 1px solid var(--primary-4);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .strength-emoji {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        .advantages-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .advantages-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+        }
+        
+        .advantages-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-2);
+            font-weight: bold;
+        }
+        
+        .emphasis-box {
+            background-color: rgba(240, 62, 62, 0.1);
+            border: 2px solid var(--accent-2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-family: 'Kaisei Decol', serif;
+            font-size: 20px;
+            color: var(--accent-3);
+            font-weight: bold;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 15px;
+            border-top: 2px dashed var(--primary-3);
+            font-size: 13px;
+            color: var(--text-subtitle);
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-1, .card-2, .card-3 {
+                grid-column: 1;
+            }
+            
+            .card-1 {
+                grid-row: 1;
+            }
+            
+            .card-2 {
+                grid-row: 2;
+            }
+            
+            .card-3 {
+                grid-row: 3;
+            }
+            
+            .timeline {
+                flex-direction: column;
+                height: 300px;
+                align-items: flex-start;
+            }
+            
+            .timeline::after {
+                left: 40px;
+                right: auto;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                height: 100%;
+                transform: none;
+            }
+            
+            .timeline-point {
+                margin-left: 80px;
+                margin-bottom: 20px;
+            }
+            
+            .strengths-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">自分の強みは？</h1>
+            <p class="subtitle">高校生活を充実させる自己発見</p>
+            <div class="grade-badge">2年生</div>
+        </div>
+        
+        <div class="content">
+            <!-- Card 1: 中だるみの時期 -->
+            <div class="card card-1">
+                <h2 class="card-header">
+                    <div class="icon">📊</div>
+                    2年生は「中だるみ」の時期
+                </h2>
+                
+                <div class="concept-box">
+                    <h3 class="concept-title">なぜ中だるみしやすいの？</h3>
+                    <ul class="advantages-list">
+                        <li><span class="highlight">高校生活に慣れてきた</span>（学校のことが分かってきた）</li>
+                        <li><span class="highlight">友人関係が築けてきた</span>ので気が緩む</li>
+                        <li>3年生に比べて<span class="highlight">進路に関する焦りが少ない</span></li>
+                    </ul>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-point">1年生<div class="timeline-label">高校に慣れる</div></div>
+                    <div class="timeline-point active">2年生<div class="timeline-label">自分の強みを作る</div></div>
+                    <div class="timeline-point">3年生<div class="timeline-label">進路実現</div></div>
+                </div>
+                
+                <div class="quote">
+                    1年後には進学or就職を決め、いよいよ本格的に進路実現に向けて走り出しますが、その時になって「自分の強み」が見つけられていなければかなり苦労します。
+                </div>
+            </div>
+            
+            <!-- Card 2: 強みの例 -->
+            <div class="card card-2">
+                <h2 class="card-header">
+                    <div class="icon">💪</div>
+                    「これだけは誰にも負けない」
+                </h2>
+                
+                <p>あなたには、<span class="key-concept">「これだけは誰にも負けない」</span>という強みがありますか？</p>
+                
+                <div class="strengths-list">
+                    <div class="strength-item">
+                        <span class="strength-emoji">📚</span>
+                        <span>テスト成績の向上</span>
+                    </div>
+                    
+                    <div class="strength-item">
+                        <span class="strength-emoji">🏆</span>
+                        <span>部活動の実績</span>
+                    </div>
+                    
+                    <div class="strength-item">
+                        <span class="strength-emoji">🧾</span>
+                        <span>検定・資格取得</span>
+                    </div>
+                    
+                    <div class="strength-item">
+                        <span class="strength-emoji">📝</span>
+                        <span>皆勤出席</span>
+                    </div>
+                    
+                    <div class="strength-item">
+                        <span class="strength-emoji">🍱</span>
+                        <span>毎日自分で弁当作り</span>
+                    </div>
+                    
+                    <div class="strength-item">
+                        <span class="strength-emoji">🧹</span>
+                        <span>家事を毎日している</span>
+                    </div>
+                    
+                    <div class="strength-item">
+                        <span class="strength-emoji">🚶</span>
+                        <span>雨の日も長距離通学</span>
+                    </div>
+                    
+                    <div class="strength-item">
+                        <span class="strength-emoji">🌱</span>
+                        <span>その他の努力</span>
+                    </div>
+                </div>
+                
+                <div class="concept-box" style="margin-top: 20px;">
+                    <h3 class="concept-title">強みを持つメリット</h3>
+                    <ul class="advantages-list">
+                        <li>進路選択の際の<span class="highlight">アピールポイント</span>になる</li>
+                        <li>自信につながり<span class="highlight">精神的な支え</span>になる</li>
+                        <li><span class="highlight">自己理解</span>が深まる</li>
+                        <li>目標に向かって<span class="highlight">頑張る力</span>が身につく</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Card 3: Call to Action -->
+            <div class="card card-3">
+                <h2 class="card-header">
+                    <div class="icon">🚀</div>
+                    今こそ行動するとき
+                </h2>
+                
+                <div class="emphasis-box">
+                    3年生になってから自分の強みをつくっていては遅い！
+                </div>
+                
+                <p style="text-align: center; font-size: 18px;">中だるみしがちなこの<span class="key-concept">2年生のうち</span>に、<br>何でもいいので<span class="highlight">自分の強みになることを見つけ実行</span>しよう。</p>
+                
+                <div class="quote" style="text-align: center; font-size: 20px;">
+                    あなたの強みは何ですか？<br>
+                    今日から始めましょう！
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            高校生活充実のためのグラフィックレコーディング © 2025
+        </div>
+    </div>
+</body>
+</html>
