@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ゆでガエル - 気づかぬうちの危険な変化</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        
+        :root {
+            --primary-1: #1E88E5;
+            --primary-2: #42A5F5;
+            --primary-3: #64B5F6;
+            --primary-4: #90CAF9;
+            --primary-5: #BBDEFB;
+            --hot-1: #F44336;
+            --hot-2: #EF5350;
+            --hot-3: #E57373;
+            --hot-4: #FFCDD2;
+            --green-1: #4CAF50;
+            --green-2: #66BB6A;
+            --neutral: #757575;
+            --background: #F5F5F5;
+            --text-main: #212121;
+            --text-light: #616161;
+        }
+        
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            padding: 25px 35px;
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.1), rgba(187, 222, 251, 0.3));
+            border-bottom: 3px dashed var(--primary-2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            background-color: rgba(244, 67, 54, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(to right, var(--primary-1), var(--hot-2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .subtitle {
+            font-family: 'Yomogi', cursive;
+            font-size: 18px;
+            color: var(--text-light);
+            margin: 10px 0 0;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 25px;
+            position: relative;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid;
+        }
+        
+        .card-1 {
+            border-color: var(--primary-1);
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+        }
+        
+        .card-2 {
+            border-color: var(--hot-2);
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+        }
+        
+        .card-3 {
+            border-color: var(--green-1);
+            grid-column: 1 / 3;
+            grid-row: 2 / 3;
+        }
+        
+        .card-header {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 20px;
+            color: var(--text-main);
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .card-header::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: repeating-linear-gradient(to right, var(--primary-2), var(--primary-2) 5px, transparent 5px, transparent 10px);
+        }
+        
+        .card-2 .card-header::after {
+            background: repeating-linear-gradient(to right, var(--hot-2), var(--hot-2) 5px, transparent 5px, transparent 10px);
+        }
+        
+        .card-3 .card-header::after {
+            background: repeating-linear-gradient(to right, var(--green-1), var(--green-1) 5px, transparent 5px, transparent 10px);
+        }
+        
+        .highlight {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+        
+        .highlight::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(255, 205, 210, 0.5);
+            z-index: -1;
+            transform: rotate(-1deg);
+        }
+        
+        .key-concept {
+            display: inline-block;
+            font-family: 'Kaisei Decol', serif;
+            padding: 3px 10px;
+            background-color: var(--primary-2);
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 2px 5px;
+            transform: rotate(-1deg);
+        }
+        
+        .hot-concept {
+            background-color: var(--hot-2);
+        }
+        
+        .green-concept {
+            background-color: var(--green-1);
+        }
+        
+        .experiment-box {
+            border: 2px dashed var(--primary-3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: rgba(144, 202, 249, 0.1);
+        }
+        
+        .experiment-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: var(--primary-1);
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .experiment-title::before {
+            content: "🧪";
+            margin-right: 8px;
+        }
+        
+        .warning-box {
+            border: 2px dashed var(--hot-2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: rgba(255, 205, 210, 0.2);
+        }
+        
+        .warning-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: var(--hot-1);
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-title::before {
+            content: "⚠️";
+            margin-right: 8px;
+        }
+        
+        .action-box {
+            border: 2px dashed var(--green-1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        
+        .action-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: var(--green-1);
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .action-title::before {
+            content: "✅";
+            margin-right: 8px;
+        }
+        
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(30, 136, 229, 0.2);
+            border-radius: 50%;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .card-2 .icon {
+            background-color: rgba(244, 67, 54, 0.2);
+        }
+        
+        .card-3 .icon {
+            background-color: rgba(76, 175, 80, 0.2);
+        }
+        
+        .quote {
+            font-family: 'Yomogi', cursive;
+            font-size: 18px;
+            line-height: 1.6;
+            padding: 15px;
+            background-color: rgba(187, 222, 251, 0.3);
+            border-left: 3px solid var(--primary-2);
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .quote::before, .quote::after {
+            font-family: serif;
+            font-size: 40px;
+            position: absolute;
+            color: rgba(30, 136, 229, 0.3);
+            line-height: 1;
+        }
+        
+        .quote::before {
+            content: """;
+            top: 0;
+            left: 5px;
+        }
+        
+        .quote::after {
+            content: """;
+            bottom: -10px;
+            right: 5px;
+        }
+        
+        .frog-experiment {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .frog-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 30%;
+        }
+        
+        .frog-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary-5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        .frog-step:nth-child(2) .frog-icon {
+            background-color: var(--primary-4);
+        }
+        
+        .frog-step:nth-child(3) .frog-icon {
+            background-color: var(--hot-4);
+        }
+        
+        .arrow {
+            font-size: 24px;
+            color: var(--neutral);
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .example-item {
+            background-color: rgba(187, 222, 251, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .example-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        .warning-pulse {
+            position: relative;
+        }
+        
+        .warning-pulse::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(244, 67, 54, 0.3);
+            border-radius: inherit;
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            70% {
+                transform: scale(1.05);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+        
+        .call-to-action {
+            text-align: center;
+            font-family: 'Kaisei Decol', serif;
+            font-size: 22px;
+            color: var(--green-1);
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(76, 175, 80, 0.1);
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .emoji {
+            font-size: 24px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 15px;
+            border-top: 2px dashed var(--primary-2);
+            font-size: 13px;
+            color: var(--text-light);
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-1, .card-2, .card-3 {
+                grid-column: 1;
+            }
+            
+            .card-1 {
+                grid-row: 1;
+            }
+            
+            .card-2 {
+                grid-row: 2;
+            }
+            
+            .card-3 {
+                grid-row: 3;
+            }
+            
+            .frog-experiment {
+                flex-direction: column;
+            }
+            
+            .frog-step {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+            
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">ゆでガエル</h1>
+            <p class="subtitle">気づかぬうちの危険な変化に警鐘を鳴らす教訓</p>
+        </div>
+        
+        <div class="content">
+            <!-- Card 1: The Experiment -->
+            <div class="card card-1">
+                <h2 class="card-header">
+                    <div class="icon">🐸</div>
+                    ゆでガエルの実験
+                </h2>
+                
+                <div class="experiment-box">
+                    <h3 class="experiment-title">実験内容</h3>
+                    
+                    <div class="frog-experiment">
+                        <div class="frog-step">
+                            <div class="frog-icon">🧪</div>
+                            <p><span class="key-concept">熱湯</span>にカエルを入れると...</p>
+                            <p>熱さに驚いて<span class="highlight">すぐに飛び出す</span></p>
+                        </div>
+                        
+                        <div class="arrow">→</div>
+                        
+                        <div class="frog-step">
+                            <div class="frog-icon">🧊</div>
+                            <p><span class="key-concept">冷水</span>にカエルを入れ</p>
+                            <p>カエルは<span class="highlight">泳いでいる</span></p>
+                        </div>
+                        
+                        <div class="arrow">→</div>
+                        
+                        <div class="frog-step">
+                            <div class="frog-icon">🔥</div>
+                            <p><span class="key-concept">徐々に加熱</span>すると...</p>
+                            <p>カエルは<span class="highlight">逃げられず死ぬ</span></p>
+                        </div>
+                    </div>
+                    
+                    <p style="text-align: center; font-style: italic; color: var(--text-light);">※この話は作り話だろうが、妙に納得させられる話である。</p>
+                </div>
+                
+                <div class="quote">
+                    急激な変化には危機意識が働き、大きな失敗を避けようとするが、変化がゆっくりだとそれに慣れすぎて、対応するタイミングを逃しやすい。
+                </div>
+            </div>
+            
+            <!-- Card 2: Warning Signs -->
+            <div class="card card-2">
+                <h2 class="card-header">
+                    <div class="icon">⚠️</div>
+                    あなたも「ゆでガエル」になっていませんか？
+                </h2>
+                
+                <div class="warning-box">
+                    <h3 class="warning-title">危険な言い訳</h3>
+                    
+                    <div class="examples-grid">
+                        <div class="example-item warning-pulse">
+                            <span class="example-icon">💬</span>
+                            <span>「周りもあんまりしてないし、まあいいか」</span>
+                        </div>
+                        
+                        <div class="example-item warning-pulse">
+                            <span class="example-icon">💬</span>
+                            <span>「このくらいならいいやろ」</span>
+                        </div>
+                        
+                        <div class="example-item">
+                            <span class="example-icon">📉</span>
+                            <span>勉強時間が少しずつ減っている</span>
+                        </div>
+                        
+                        <div class="example-item">
+                            <span class="example-icon">⏰</span>
+                            <span>生活リズムが少しずつ乱れている</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <p style="font-size: 18px; text-align: center;">
+                    だんだんと、<span class="key-concept hot-concept">「慣れ」</span>が<span class="key-concept hot-concept">「怠け」</span>に変化していませんか？
+                </p>
+                
+                <div class="quote" style="background-color: rgba(255, 205, 210, 0.3); border-left-color: var(--hot-2);">
+                    この「ゆでガエル」の話を聞いてドキっとした人がいるはず。<br>
+                    <span style="font-style: italic;">(いや、居てくれ)</span>
+                </div>
+            </div>
+            
+            <!-- Card 3: Action & Solution -->
+            <div class="card card-3">
+                <h2 class="card-header">
+                    <div class="icon">🚀</div>
+                    ゆであがる前に行動しよう
+                </h2>
+                
+                <div class="action-box">
+                    <h3 class="action-title">脱出方法</h3>
+                    
+                    <p>君たちなら、<span class="highlight">ゆであがる前に火を止める</span>か、そのビーカーの中から<span class="highlight">脱出できるはず</span>である。</p>
+                    
+                    <div class="examples-grid">
+                        <div class="example-item" style="background-color: rgba(76, 175, 80, 0.1);">
+                            <span class="example-icon">🔍</span>
+                            <span>自分の現状を客観的に見つめ直す</span>
+                        </div>
+                        
+                        <div class="example-item" style="background-color: rgba(76, 175, 80, 0.1);">
+                            <span class="example-icon">📝</span>
+                            <span>具体的な目標を設定し直す</span>
+                        </div>
+                        
+                        <div class="example-item" style="background-color: rgba(76, 175, 80, 0.1);">
+                            <span class="example-icon">👥</span>
+                            <span>周りの人に協力してもらう</span>
+                        </div>
+                        
+                        <div class="example-item" style="background-color: rgba(76, 175, 80, 0.1);">
+                            <span class="example-icon">⏰</span>
+                            <span>今日から小さな改善を始める</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="call-to-action">
+                    <span class="emoji">🐸</span> 変化に気づき、今すぐ行動を起こそう！ <span class="emoji">🔥</span>
+                </div>
+                
+                <p style="text-align: center; font-size: 18px;">
+                    ゆっくりとした変化こそ、<span class="key-concept green-concept">最も危険</span>だと気づくことが大切です。<br>
+                    危険に気づいたあなたは、すでに<span class="key-concept green-concept">第一歩</span>を踏み出しています。
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            ゆでガエルの教訓 - グラフィックレコーディング © 2025
+        </div>
+    </div>
+</body>
+</html>
