@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>思考の癖 - 吉野彰教授から学ぶ成功の秘訣</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        
+        :root {
+            --primary-1: #2C73D2;
+            --primary-2: #0081CF;
+            --primary-3: #0089BA;
+            --primary-4: #008E9B;
+            --primary-5: #008F7A;
+            --accent-1: #FFA41B;
+            --accent-2: #FF5151;
+            --text-main: #333333;
+            --text-heading: #222222;
+            --text-subtitle: #555555;
+            --bg-light: #F7F9FC;
+        }
+        
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            padding: 25px 35px;
+            background: linear-gradient(135deg, rgba(44, 115, 210, 0.1), rgba(0, 143, 122, 0.1));
+            border-bottom: 3px dashed var(--primary-3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            background-color: rgba(255, 164, 27, 0.2);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(to right, var(--primary-1), var(--primary-5));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .subtitle {
+            font-family: 'Yomogi', cursive;
+            font-size: 18px;
+            color: var(--text-subtitle);
+            margin: 10px 0 0;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .date {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            font-family: 'Zen Kurenaido', sans-serif;
+            color: var(--text-subtitle);
+            font-size: 14px;
+            background-color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transform: rotate(2deg);
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            padding: 25px;
+            position: relative;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid;
+        }
+        
+        .card-1 {
+            border-color: var(--primary-1);
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+        }
+        
+        .card-2 {
+            border-color: var(--primary-3);
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+        }
+        
+        .card-3 {
+            border-color: var(--primary-5);
+            grid-column: 3 / 4;
+            grid-row: 1 / 3;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-4 {
+            border-color: var(--accent-1);
+            grid-column: 1 / 3;
+            grid-row: 2 / 3;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-header {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 20px;
+            color: var(--text-heading);
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .card-header::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: repeating-linear-gradient(to right, var(--primary-3), var(--primary-3) 5px, transparent 5px, transparent 10px);
+        }
+        
+        .highlight {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+        
+        .highlight::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(255, 164, 27, 0.3);
+            z-index: -1;
+            transform: rotate(-1deg);
+        }
+        
+        .key-concept {
+            display: inline-block;
+            font-family: 'Kaisei Decol', serif;
+            padding: 3px 10px;
+            background-color: var(--primary-2);
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 2px 5px;
+            transform: rotate(-1deg);
+        }
+        
+        .concept-box {
+            border: 2px dashed var(--primary-3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: rgba(0, 137, 186, 0.05);
+        }
+        
+        .concept-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: var(--primary-1);
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .concept-title::before {
+            content: "✦";
+            margin-right: 8px;
+            color: var(--accent-1);
+        }
+        
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(44, 115, 210, 0.2);
+            border-radius: 50%;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .icon-img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .quote {
+            font-family: 'Yomogi', cursive;
+            font-size: 18px;
+            line-height: 1.6;
+            padding: 15px;
+            background-color: rgba(255, 164, 27, 0.1);
+            border-left: 3px solid var(--accent-1);
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .quote::before, .quote::after {
+            font-family: serif;
+            font-size: 40px;
+            position: absolute;
+            color: rgba(255, 164, 27, 0.5);
+            line-height: 1;
+        }
+        
+        .quote::before {
+            content: """;
+            top: 0;
+            left: 5px;
+        }
+        
+        .quote::after {
+            content: """;
+            bottom: -10px;
+            right: 5px;
+        }
+        
+        .diagram {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .diagram::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--primary-3);
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+        
+        .diagram-point {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border: 2px solid var(--primary-3);
+            border-radius: 50%;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .arrow {
+            position: absolute;
+            width: 40px;
+            height: 30px;
+            transform: rotate(25deg);
+            z-index: 1;
+        }
+        
+        .note {
+            background-color: rgba(0, 143, 122, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: auto;
+        }
+        
+        .note-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 16px;
+            color: var(--primary-5);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .balance {
+            display: flex;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .balance-item {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+        }
+        
+        .balance-item:first-child {
+            border-right: 2px dashed var(--primary-3);
+        }
+        
+        .emoji {
+            font-size: 24px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 15px;
+            border-top: 2px dashed var(--primary-3);
+            font-size: 13px;
+            color: var(--text-subtitle);
+        }
+        
+        .hand-arrow {
+            font-family: serif;
+            font-size: 24px;
+            color: var(--accent-2);
+            transform: rotate(-20deg);
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-1, .card-2, .card-3, .card-4 {
+                grid-column: 1;
+            }
+            
+            .card-1 {
+                grid-row: 1;
+            }
+            
+            .card-2 {
+                grid-row: 2;
+            }
+            
+            .card-3 {
+                grid-row: 3;
+            }
+            
+            .card-4 {
+                grid-row: 4;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">思考の癖</h1>
+            <p class="subtitle">吉野彰教授から学ぶ成功の秘訣</p>
+            <div class="date">2025年3月20日</div>
+        </div>
+        
+        <div class="content">
+            <!-- Card 1: Introduction -->
+            <div class="card card-1">
+                <h2 class="card-header">
+                    <div class="icon">🏆</div>
+                    ノーベル化学賞受賞
+                </h2>
+                <p>４年前、<span class="highlight">名城大教授の吉野彰さん</span>がノーベル化学賞を受賞しました。</p>
+                <p><span class="key-concept">リチウムイオン電池</span>の実用化に大きく貢献したことが評価されました。</p>
+                <p>日本人として非常に誇らしいと感じるニュースでした。</p>
+                <div class="quote">
+                    吉野さんの会見を見ていると、特に印象に残った言葉があります。
+                    それは<span class="key-concept">「執着心」</span>と<span class="key-concept">「柔軟性」</span>です。
+                </div>
+            </div>
+            
+            <!-- Card 2: Key Concepts -->
+            <div class="card card-2">
+                <h2 class="card-header">
+                    <div class="icon">💡</div>
+                    成功への思考パターン
+                </h2>
+                <div class="concept-box">
+                    <h3 class="concept-title">執着心</h3>
+                    <p>吉野さんは、自身の研究に対する<span class="highlight">執着心・粘り強さ</span>が重要だと語りました。</p>
+                    <p>何度も何度も試行錯誤を重ね、研究をやり続ける<span class="highlight">執着心を捨てない</span>ことが成功への道です。</p>
+                </div>
+                
+                <div class="concept-box">
+                    <h3 class="concept-title">柔軟性</h3>
+                    <p>研究に必要なもう一つのことは<span class="highlight">「柔軟性」</span>です。</p>
+                    <p>自分が行える最大限の努力を重ねてきたのなら、あとは「まぁ何とかなるわな」という<span class="highlight">柔らかさをもつ</span>ことが大切だと語られていました。</p>
+                </div>
+                
+                <div class="diagram">
+                    <div class="diagram-point">努力</div>
+                    <div class="diagram-point">継続</div>
+                    <div class="diagram-point">柔軟</div>
+                    <div class="diagram-point">成功</div>
+                </div>
+            </div>
+            
+            <!-- Card 3: Wall Quote -->
+            <div class="card card-3">
+                <h2 class="card-header">
+                    <div class="icon">🧱</div>
+                    壁の価値
+                </h2>
+                
+                <p>会見の終盤、吉野さんはこうも語っています。</p>
+                
+                <div class="quote" style="font-size: 22px; text-align: center; padding: 25px;">
+                    「壁はあったほうがいい。<br>
+                    壁を乗り越えるときに成長できるもので、<br>
+                    壁のないところに成長は絶対にない。」
+                </div>
+                
+                <p>吉野さんの<span class="highlight">思考の癖（？）</span>が今回の大きな成功につながったのではないかと感じています。</p>
+                
+                <div class="balance">
+                    <div class="balance-item">
+                        <span class="emoji">🔥</span>
+                        <h4>執着心</h4>
+                        <p>諦めない粘り強さ</p>
+                    </div>
+                    <div class="balance-item">
+                        <span class="emoji">🌊</span>
+                        <h4>柔軟性</h4>
+                        <p>何とかなるさの心持ち</p>
+                    </div>
+                </div>
+                
+                <div class="note">
+                    <h4 class="note-title">成功の方程式</h4>
+                    <p><span class="key-concept">執着心</span> + <span class="key-concept">柔軟性</span> = <span class="highlight">困難を乗り越える力</span></p>
+                </div>
+            </div>
+            
+            <!-- Card 4: Conclusion -->
+            <div class="card card-4">
+                <h2 class="card-header">
+                    <div class="icon">📝</div>
+                    学びを日常に活かす
+                </h2>
+                
+                <p>あと２日で今年度が終わります。来週からは春休みです。</p>
+                <p>休んで羽を伸ばすことは大事です。<span class="hand-arrow">→</span> しかし、やるべきことはしっかりやる</p>
+                <p><span class="highlight">メリハリを付けた時間</span>を過ごしましょう。</p>
+                
+                <div class="concept-box">
+                    <h3 class="concept-title">大切な時期</h3>
+                    <p>春季大会や昇段審査など、部活動で大事な時期になっている人もいます。</p>
+                    <p>部活も勉強も、<span class="highlight">やるだけの努力を行い</span>、あとは<span class="highlight">柔軟に物事を考えられる</span>ような、吉野さんのような思考が生まれるといいですね。</p>
+                </div>
+                
+                <div class="quote" style="text-align: right;">
+                    私も見習いたいと感じました。
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            グラフィックレコーディング © 2025
+        </div>
+    </div>
+</body>
+</html>

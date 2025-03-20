@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西条農業高等学校</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        :root {
+            --primary: #3a86ff;
+            --secondary: #ff006e;
+            --accent: #fb5607;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(58, 134, 255, 0.9), rgba(255, 0, 110, 0.9));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+            width: 90%;
+            max-width: 1200px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: white;
+            color: var(--primary);
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 3rem;
+        }
+        
+        .navbar.scrolled .nav-link {
+            color: var(--dark);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .navbar.scrolled .logo {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-link {
+            margin-left: 2.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: 0.3s;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .section {
+            padding: 6rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            font-weight: 800;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .featured-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .featured-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .featured-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .featured-content {
+            padding: 1.5rem;
+        }
+        
+        .featured-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .featured-desc {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .featured-link {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .featured-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: transform 0.3s;
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+        
+        .featured-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 5rem 1rem;
+            text-align: center;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .stat-item {
+            margin: 1.5rem;
+            min-width: 200px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .news-img-container {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .news-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .news-card:hover .news-img {
+            transform: scale(1.1);
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+        
+        .news-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .news-excerpt {
+            color: #666;
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 3rem 2rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+            padding-right: 2rem;
+        }
+        
+        .footer-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-link a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-link a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled .bar {
+            background-color: var(--dark);
+        }
+        
+        @media (max-width: 992px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: white;
+                transition: right 0.5s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-link {
+                margin: 1.5rem 0;
+                color: var(--dark);
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: 4rem 2rem;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .scrollReveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+        
+        .scrollReveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">西条農業高校</a>
+        
+        <div class="mobile-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link">ホーム</a></li>
+            <li><a href="#about" class="nav-link">学校紹介</a></li>
+            <li><a href="#news" class="nav-link">お知らせ</a></li>
+            <li><a href="#campus" class="nav-link">キャンパスライフ</a></li>
+            <li><a href="#contact" class="nav-link">お問い合わせ</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>未来を創造する学びの場</h1>
+            <p>西条農業高等学校は、創造性と個性を重視した教育を提供します</p>
+            <a href="#about" class="cta-button">詳しく見る</a>
+        </div>
+    </section>
+    
+    <section id="about" class="section scrollReveal">
+        <h2 class="section-title">学校紹介</h2>
+        <div class="featured-wrapper">
+            <div class="featured-card">
+                <img src="/api/placeholder/400/320" alt="教育理念" class="featured-img">
+                <div class="featured-content">
+                    <h3 class="featured-title">教育理念</h3>
+                    <p class="featured-desc">個性を尊重し、創造性を育む教育環境で、未来をリードする人材を育成します。</p>
+                    <a href="#" class="featured-link">詳細を見る</a>
+                </div>
+            </div>
+            
+            <div class="featured-card">
+                <img src="/api/placeholder/400/320" alt="カリキュラム" class="featured-img">
+                <div class="featured-content">
+                    <h3 class="featured-title">特色あるカリキュラム</h3>
+                    <p class="featured-desc">一人ひとりの才能を伸ばす多彩なプログラムと先進的な学習環境を提供しています。</p>
+                    <a href="#" class="featured-link">詳細を見る</a>
+                </div>
+            </div>
+            
+            <div class="featured-card">
+                <img src="/api/placeholder/400/320" alt="施設紹介" class="featured-img">
+                <div class="featured-content">
+                    <h3 class="featured-title">充実した施設</h3>
+                    <p class="featured-desc">最新の設備と快適な学習環境で、生徒の可能性を最大限に引き出します。</p>
+                    <a href="#" class="featured-link">詳細を見る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats-section scrollReveal">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">2%</div>
+                <div class="stat-text">大学進学率</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-number">17+</div>
+                <div class="stat-text">部活動の数</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-number">100年</div>
+                <div class="stat-text">教育の歴史</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-number">255+</div>
+                <div class="stat-text">在校生徒数</div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="news" class="section scrollReveal">
+        <h2 class="section-title">最新情報</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-img-container">
+                    <img src="/api/placeholder/400/320" alt="ニュース1" class="news-img">
+                </div>
+                <div class="news-content">
+                    <span class="news-date">2025.03.01</span>
+                    <h3 class="news-title">春季オープンキャンパス開催のお知らせ</h3>
+                    <p class="news-excerpt">4月15日(土)に春季オープンキャンパスを開催します。施設見学や模擬授業など、多彩なプログラムを用意しています。</p>
+                    <a href="#" class="featured-link">続きを読む</a>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-img-container">
+                    <img src="" alt="ニュース2" class="news-img">
+                </div>
+                <div class="news-content">
+                    <span class="news-date">2025.02.20</span>
+                    <h3 class="news-title">全国科学コンテストで優勝</h3>
+                    <p class="news-excerpt">科学部の山田さんと佐藤さんが全国高校科学コンテストで見事優勝を果たしました。</p>
+                    <a href="#" class="featured-link">続きを読む</a>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-img-container">
+                    <img src="/api/placeholder/400/320" alt="ニュース3" class="news-img">
+                </div>
+                <div class="news-content">
+                    <span class="news-date">2025.02.10</span>
+                    <h3 class="news-title">新校舎完成のお知らせ</h3>
+                    <p class="news-excerpt">2025年4月より使用開始となる新校舎が完成しました。最新の設備と快適な学習環境をご紹介します。</p>
+                    <a href="#" class="featured-link">続きを読む</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="campus" class="section scrollReveal">
+        <h2 class="section-title">キャンパスライフ</h2>
+        <div class="image-gallery">
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/320" alt="校内風景1" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h4>図書館</h4>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/320" alt="校内風景2" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h4>科学実験室</h4>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/320" alt="校内風景3" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h4>体育館</h4>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/320" alt="校内風景4" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h4>コンピュータ室</h4>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/320" alt="校内風景5" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h4>音楽室</h4>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/320" alt="校内風景6" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h4>カフェテリア</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3 class="footer-title">西条農業高等学校</h3>
+                <p>〒123-4567<br>西条市福武甲2093<br>TEL: 03-1234-5678<br>FAX: 03-1234-5679</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">リンク</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">ホーム</a></li>
+                    <li class="footer-link"><a href="#about">学校紹介</a></li>
+                    <li class="footer-link"><a href="#news">お知らせ</a></li>
+                    <li class="footer-link"><a href="#campus">キャンパスライフ</a></li>
+                    <li class="footer-link"><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">入学案内</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">入学要項</a></li>
+                    <li class="footer-link"><a href="#">オープンキャンパス</a></li>
+                    <li class="footer-link"><a href="#">学校説明会</a></li>
+                    <li class="footer-link"><a href="#">入試情報</a></li>
+                    <li class="footer-link"><a href="#">よくある質問</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">カテゴリー</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">教育内容</a></li>
+                    <li class="footer-link"><a href="#">部活動</a></li>
+                    <li class="footer-link"><a href="#">進路実績</a></li>
+                    <li class="footer-link"><a href="#">イベント</a></li>
+                    <li class="footer-link"><a href="#">生徒の声</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2025 桜ヶ丘高等学校. All Rights Reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+        });
+        
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.scrollReveal');
+        
+        function checkReveal() {
+            for (let i = 0; i < revealElements.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = revealElements[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    revealElements[i].classList.add('revealed');
+                }
+            }
+        }
+        
+        window.addEventListener('scroll', checkReveal);
+        checkReveal(); // Check on page load
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileToggle.classList.remove('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
